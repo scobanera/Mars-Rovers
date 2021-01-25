@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <title>Mars Rovers</title>
+</head>
+<body>
+   <h1>Mars Rover Simulation</h1>
+
+   <div class="row">
+   	<div class="column" style="width: 25%;">
+   		<h2>Command Center</h2>
+
+   		<h3> Grid control - Upper right position </h3>
+   		<div>
+   			<span>Row</span>
+   			<input type="number" id="grid-rows">
+   		</div>
+   		<div>
+   			<span>Column</span>
+   			<input type="number" id="grid-columns">
+   		</div>
+
+   		<button onclick="resizeGrid()">Resize</button>
+
+		<h3> Send rover </h3>
+   		<div id="rovers-launch">
+   			<div>
+          <p>Column <input id="new-x" type="number"></p>
+   				<p>Row <input id="new-y" type="number"></p>
+          <p>Direction<input id="new-dir" type="text" placeholder="e.g N"></p>
+   				<button onclick="createRover()">Launch</button>
+   			</div>
+   		</div>
+
+		<h3> Rovers fleet control <button onclick="deleteRovers()">Back to Earth!</button></h3>
+   		<div id="rovers-list"></div>
+   	</div>
+
+   	<div class="column" style="width: 60%;">
+   		<h2>Grid</h2>
+   		<div id="grid" class="grid-container">
+   </div>
+
+   		
+  	</div>
+	</div>
+
+
+</body>
+</html>
