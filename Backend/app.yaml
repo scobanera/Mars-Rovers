@@ -1,0 +1,16 @@
+service: navigation
+runtime: python
+env: flex
+entrypoint: gunicorn -b :$PORT main:app
+
+runtime_config:
+  python_version: 3
+
+env_variables:
+  CLOUD_SQL_USERNAME: root
+  CLOUD_SQL_PASSWORD: demo
+  CLOUD_SQL_DATABASE_NAME: rovers
+  CLOUD_SQL_CONNECTION_NAME: scobanera-mars-rover-ibm:southamerica-east1:mars-ibm-database
+
+beta_settings:
+  cloud_sql_instances: scobanera-mars-rover-ibm:southamerica-east1:mars-ibm-database
