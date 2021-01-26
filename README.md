@@ -94,7 +94,7 @@ Further commands can be sent, and rovers will be repositioned accordingly on the
 2. If an invalid command is sent (for example, trying to send the rover outside of the plateau), the same will be executed until its last valid position, and all the remaining commands will be ignored.
 ![Home_placed_3](https://user-images.githubusercontent.com/75647943/105783336-fc512500-5f54-11eb-9a98-8970db265bd0.PNG)
 
-# Notes
+# TODO
 
 There are a few pending tasks to improve the overall project quality:
  - Unit tests.
