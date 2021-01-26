@@ -97,8 +97,8 @@ Further commands can be sent, and rovers will be repositioned accordingly on the
 # TODO
 
 There are a few pending tasks to improve the overall project quality:
- - Unit tests.
- - Improve frontend architecture. Although it's a simple UI for demostration purposes, adding new functionalities with the existing approach could lead to certain issues.
+ - Unit and integration tests.
+ - Improve frontend architecture. Although it's a simple UI for demostration purposes, adding new functionalities with the existing approach would not be easy to maintain and scale.
  - Improve error handling and error propagation.
  - The API does not use any authentication method at the moment.
  - Using an ORM could simplify the object mapping and database manipulation in general.
