@@ -77,7 +77,7 @@ That is expected to return the following output:
 5 1 E
 ```
 
-In order to replicate using the UI in question, we can start by specifying a 6 x 6 grid (note that the top right coordinate is used (5,5), creating a grid that goes from (0,0) to (5,5), i.e: 6 rows and 6 columns).
+In order to replicate this input using the UI developed, we can start by selecting a 6 x 6 grid (the top right coordinate is specified (5,5), creating a grid that goes from (0,0) to (5,5), i.e: 6 rows and 6 columns).
 ![Home](https://user-images.githubusercontent.com/75647943/105783330-fb1ff800-5f54-11eb-8f22-00fc5e7c0eea.PNG)
 
 Under the `Send Rover` section, we can create the two rovers: `1 2 N` and `3 3 E`
