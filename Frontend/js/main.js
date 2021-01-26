@@ -1,5 +1,11 @@
+/* Main Javascrip file for the web app.
+ *
+ * The JS is responsible for displaying the grid according to the backend information.
+ * No logic regarding rovers position is included here.
+ */
+
 var server = "https://navigation-dot-scobanera-mars-rover-ibm.rj.r.appspot.com/"
-var activeRovers = {};
+var activeRovers = {}; // List of rovers currently positioned at a certain cell in the grid.
 
 $(document).ready(function() {
 	getGridSize();
@@ -16,12 +22,17 @@ function getGridSize() {
 	document.getElementById("grid-columns").value = parseInt(response.max_x) - 1;
 }
 
+/*
+ * Prints the grid according to the existing number of rows and columns.
+ */
 function printGrid() {
 	var rows = document.getElementById("grid-rows").value;
 	var columns = document.getElementById("grid-columns").value;
 
 	var grid = document.getElementById("grid");
 	grid.innerHTML = "";
+
+	// The upper right coordinate 'x', correspon to a total of 'x + 1' columns. 
 	let totalColumns = parseInt(columns) + 1;
 	grid.style.gridTemplateColumns = "repeat(" + totalColumns + ", auto)";
 
@@ -41,6 +52,13 @@ function printGrid() {
 	}
 }
 
+/*
+ * Resizes the grid to the selected number of rows and columns.
+ *
+ * After resizing the grid, existing rovers are removed from the grid. Althoug resizing
+ * a grid doesn't neccearly impact the rovers, it is assumed that they return to their
+ * base position until they are launched again according to the new grid system.
+ */
 function resizeGrid() {
 	var body = {};
 	body["max_x"] = parseInt(document.getElementById("grid-columns").value) + 1;
@@ -59,6 +77,9 @@ function resizeGrid() {
 	deleteRovers();
 }
 
+/*
+ * Creates a rover at the selected position and specified direction.
+ */
 function createRover() {
 	var body = {};
 	body["pos_x"] = document.getElementById("new-x").value;
@@ -81,19 +102,37 @@ function createRover() {
 	xhttp.send(JSON.stringify(body));
 }
 
-function setActiveRover(code, direction) {
-	if(activeRovers[code] != null){
-		activeRovers[code].push(direction);
+/*
+ * Append the rover to the list of active rovers.
+ *
+ * @param {string} cell Cell code where the rover has to be placed
+ * @param {string} direction Rover direction.
+ */
+function setActiveRover(cell, direction) {
+	if(activeRovers[cell] != null){
+		activeRovers[cell].push(direction);
 	} else {
-		activeRovers[code] = [direction];
+		activeRovers[cell] = [direction];
 	}	
 }
 
+/*
+ * Removes the rover from its current position. Rover has to be present on indicated cell.
+ *
+ * @param {string} code Cell code where the rover is currently placed.
+ * @param {string} direction Rover direction.
+ */
 function removeActiveRover(cell, direction) {
 	let roverIndex = activeRovers[cell].indexOf(direction);
 	activeRovers[cell].splice(roverIndex, 1);
 }
 
+/*
+ * Create a command panel for the new Rover.
+ *
+ * @param {dict} rover Rover containing its coordinates and current direction.
+ * @param {string} rover_id
+ */
 function appendRoverCommandPanel(rover, rover_id){
 	let panel = document.createElement("div");
 	panel.id = rover_id;
@@ -119,6 +158,12 @@ function appendRoverCommandPanel(rover, rover_id){
 	document.getElementById("rovers-list").appendChild(panel);
 }
 
+/*
+ * Move the rover to a new position after executing the user commands.
+ *
+ * @param {string} rover_id
+ * @param {dict} origin Initial rover position.
+ */
 function repositionRover(rover_id, origin) {
 	var body = {};
 	body["id"] = rover_id;
@@ -146,6 +191,7 @@ function repositionRover(rover_id, origin) {
 	xhttp.setRequestHeader("Content-type", "application/json");
 	xhttp.send(JSON.stringify(body));
 }
+
 
 function appendRoverDestination(rover_id, destination){
 	var roverPanel = document.getElementById(rover_id);
