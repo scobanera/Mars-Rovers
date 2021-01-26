@@ -1,0 +1,17 @@
+service: user-interface
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /
+  static_files: static/index.html
+  upload: static/index.html
+
+- url: /js
+  mime_type: text/javascript
+  static_dir: static/js/(.*\.js)
+
+- url: /(.*)
+  static_files: static/\1
+  upload: static/(.*)
