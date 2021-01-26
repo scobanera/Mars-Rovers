@@ -4,7 +4,7 @@
 rectangular, must be navigated by the rovers so that their on-board cameras can get a complete view of the
 surrounding terrain to send back to Earth. [...]_
 
-This solution to the problem is organized using two independent services:
+THe proposed solution is organized in two independent services:
 1. *Navigation service*: REST API that controls rovers navigation on the grid. It contains the logic to avoid sending rovers outside of the plateau.
 2. *User interface*: provides a (very) simple UI to visualize the plateau grid, rovers landing, and their final position after executing certain commands.
 
@@ -29,12 +29,12 @@ The backend provides the following endpoints:
   
 The API can be accessed here: https://navigation-dot-scobanera-mars-rover-ibm.rj.r.appspot.com/. The home path is just reserved to show the API is active.
 
-For example, a GET request to https://navigation-dot-scobanera-mars-rover-ibm.rj.r.appspot.com/grid/size will return the current plateau size.
+For example, a GET request to https://navigation-dot-scobanera-mars-rover-ibm.rj.r.appspot.com/grid/size will return the current grid size.
 
 ## Storage
 
-NASA wouldn't probably like to lose one of its rovers because the location wasn't tracked, therefore it's important to store their location besides the particular session. Once a rover has been palced at a specific positions, more commands can be sent. 
-- _Note: just for the simulation purposes, after refreshing the website the old rovers are not present in the plateau. Additionally, after resizing the gird it's assumed that rovers are taken out from the plateau. Changing these behaviors would not impact the oeverall design_
+Once rovers are palced on the plateau, they will be probably remain on the planet for a few years as most NASA missions. It's important to store the Rovers information beyond a single session, and that's why a database is used. 
+_Note: just for simulation purposes, after refreshing the website the old rovers are not present in the plateau. Additionally, after resizing the gird it's assumed that rovers are taken out from the plateau. Changing these behaviors would not impact the overall design_
 
 A MySQL database is used, hosted on Google Cloud SQL:
 
@@ -45,7 +45,7 @@ The schema for the two tables can be found here:
 
 ## User Interface
 
-The user interface is created using HTML, CSS and JavaScript, It makes use of the Navigation API to create, delete, and move rovers.
+The user interface is created using HTML, CSS and JavaScript. It makes use of the Navigation API to create, delete, and move rovers.
 
 It can be accessed here: https://user-interface-dot-scobanera-mars-rover-ibm.rj.r.appspot.com/
 
