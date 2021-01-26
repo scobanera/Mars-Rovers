@@ -1,6 +1,13 @@
+# -----------------------------------------------------------
+# Rover class.
+# 
+# Rovers contain a position and are restricted to a given grid.
+# The rover can move within the grid limits, any other command
+# will be ignored.
+# -----------------------------------------------------------
+
 from position import Position
 from grid import Grid
-
 
 class Rover:
     def __init__(self, position, grid):

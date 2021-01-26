@@ -1,4 +1,10 @@
-import json
+# -----------------------------------------------------------
+# Plateau grid
+#
+# The plateau is organized using a grid that goes from (0, 0)
+# to (max_x - 1, max_y - 1).
+# -----------------------------------------------------------
+
 from position import Position
 
 class Grid:

@@ -1,3 +1,12 @@
+# -----------------------------------------------------------
+# Database connection.
+#
+# Information is stored using a MySQL database, hosted with Google Cloud SQL.
+# The server connects using UNIX Sockets as explained here:
+# https://cloud.google.com/sql/docs/mysql/connect-overview
+# TODO(scobanera): refactor into a class to reduce connections.
+# -----------------------------------------------------------
+
 import os
 import pymysql
 import logging

@@ -15,7 +15,6 @@ from grid import Grid
 from rover import Rover
 
 app = flask.Flask(__name__)
-app.config["DEBUG"] = True
 
 @app.after_request
 def apply_caching(response):
@@ -34,10 +33,13 @@ def home():
 
 @app.route('/rovers/list', methods=['GET'])
 def rovers_list():
+    """ List all the rovers that are currently stored in the database. """
     return make_response(get_rovers())
+
 
 @app.route('/rovers/create', methods=['POST'])
 def rovers_create():
+    """ Create and store a rover at the given position and direction. """
     params = request.json
     if all(key in params for key in ("pos_x", "pos_y", "direction")):
         pos = Position(params["pos_x"], params["pos_y"], params["direction"])
@@ -51,6 +53,7 @@ def rovers_create():
 
 @app.route('/rovers/<id>/move', methods=['POST'])
 def rovers_move(id):
+    """ Move the rover according to the provided set of commands. """
     rover = get_rover(id)
     if (rover is None):
         return make_response('Rover not found', 400)
@@ -67,17 +70,20 @@ def rovers_move(id):
 
 @app.route('/rovers/delete', methods=['POST'])
 def rovers_delete():
+    """ Delete all rovers in the database. """
     return delete_rovers()
 
 
 @app.route('/grid/size', methods=['GET'])
 def grid_size():
+    """ Returns the size of the grid as a pair of x and y. """
     grid = get_grid()
     return make_response(jsonify(grid.__dict__))
 
 
 @app.route('/grid/resize', methods=['POST'])
 def grid_resize():
+    """ Resizes the grid to the specified new size. """
     params = request.json
     if all(key in params for key in ("max_x", "max_y")):
         grid = Grid(params["max_x"], params["max_y"])
