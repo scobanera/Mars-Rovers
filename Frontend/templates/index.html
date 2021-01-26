@@ -14,7 +14,7 @@
    	<div class="column" style="width: 25%;">
    		<h2>Command Center</h2>
 
-   		<h3> Grid control - Upper right position </h3>
+   		<h3> Grid control</h3>
    		<div>
    			<span>Row</span>
    			<input type="number" id="grid-rows">
@@ -26,8 +26,8 @@
 
    		<button onclick="resizeGrid()">Resize</button>
 
-		<h3> Send rover </h3>
-   		<div id="rovers-launch">
+      <h3> Send rover </h3>
+      <div id="rovers-launch">
    			<div>
           <p>Column <input id="new-x" type="number"></p>
    				<p>Row <input id="new-y" type="number"></p>
@@ -36,19 +36,15 @@
    			</div>
    		</div>
 
-		<h3> Rovers fleet control <button onclick="deleteRovers()">Back to Earth!</button></h3>
-   		<div id="rovers-list"></div>
-   	</div>
+      <h3> Rovers fleet control <button onclick="deleteRovers()">Back to Earth!</button></h3>
+      <div id="rovers-list"></div>
+    </div>
 
    	<div class="column" style="width: 60%;">
    		<h2>Grid</h2>
-   		<div id="grid" class="grid-container">
-   </div>
-
-   		
+   		<div id="grid" class="grid-container"></div>
   	</div>
 	</div>
-
 
 </body>
 </html>
